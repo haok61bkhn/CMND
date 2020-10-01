@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">-->
+    <link rel="stylesheet" href="{{ url_for('static',filename='plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/2.css') }}">
+    <title>License Plate</title>
+</head>
+<body style=" background-image: url(../static/bg.jpg);
+background-size: cover;
+background-repeat: none;
+color: white;" >
+     <form action="" method="post" enctype="multipart/form-data">
+    <div style="margin-left : 5%; width : 90%; height : 90vh; margin-top: 3vh;" class="">
+        <h3 style="text-align: center;
+        font-family: arial;
+        font-size: 40px;
+        font-weight: bold;
+        font-weight: 15px;">HỆ THỐNG LÀM RÕ BIỂN SỐ</h3>
+        <hr style="height:2px;border-width:0;color:black;background-color:white">
+        <div class="" style="display: flex; margin-top : 4vh">
+            <div class="" style="width: 40%; height: 80%; margin-left : 2%">
+                <div class=""><h3></h3></div>
+                <div style="width: 100%;
+                height: 70vh;
+                border-radius: 20px;
+                background: #1f2c3a;
+                box-shadow: 0px 0px 6px 4px;
+                border: 2px solid black;" class="">
+                    <h3 style="margin-top : 5px;text-align:center; width: 100%;">Chọn ảnh biển số</h3>
+                    <hr style="width:100%;height:1px;border:none;color:#333;background-color:white;">
+                    <div id="image-edit-profile" style="display: block; margin:auto; margin-top: 30px">
+                        <canvas width="350" height="250" style="border: 2px solid white; margin-left: 50%;transform: translateX(-50%)"></canvas>
+                        <img src="" id="image-show avatar" class="" alt="Images" style="display: none; width: 350px; height: 250px">  
+                </div>
+                
+                <div class="sliders" style="width: 60%; height: auto; margin-left: 50%; transform: translateX(-50%);">
+                  <div style="width: 100%;" class="slidecontainer" >
+
+                    <div class="brightness" style="display: flex; margin-top:20px">
+                      <i class="fa fa-sun"></i>
+                      <input style="width: 95%;" type="range" min="0" max="200" value="100" class="slider" id="brightness">
+                    </div>
+                    <div class="contrast" style="display: flex; margin-top : 20px">
+                      <i class="fa fa-adjust"></i>
+                      <input style="width: 95%;" type="range" min="0" max="200" value="100" class="slider" id="contrast">
+                    </div>
+                    
+                  </div>
+                </div>
+                <label class="label" data-toggle="tooltip" title="Change your avatar" style="margin-left: 50%; transform: translateX(-50%); margin-top: 20px; ">
+      
+                    <!-- <input type="file" class="sr-only" id="input" name="image" accept="image/*"> --> 
+                    <input style="font-size: 15px" type="file" id="input" name="fileToUpload">
+                </label>
+                <img id="avatar" src="" alt="" style="display: none;">
+                <!-- <input  id= "up-image" type="file"> -->
+            </div>
+            </div>
+            <div style="width : 10%; height: 80%; margin-left: 5%; margin-top: 15%" class="result">
+                <input id="send-image-plate" type="submit" style="display:block; background-color: #269fc6;border-radius: 15px; width: 100px; height: 40px; border: none; cursor: pointer;" value="">  Send <i style="font: 15px;" class="fa fa-angle-double-right"></i>
+<!--                 </button> -->
+                <button id="received-image-plate" type="button" style="display:block; background-color: #269fc6; width: 100px;border-radius: 15px; height: 40px; border: none; cursor: pointer; margin-top: 20px;" value=""> <i style="font-size: 15px;" class="fa fa-angle-double-left"></i>  Received</button>
+            </div>
+            <div class="" style="width: 39%; height: 80%; margin-left : 2%">
+                <div class=""><h3></h3></div>
+                <div style="width: 100%;
+                height: 70vh;
+                border-radius: 20px;
+                background: #1f2c3a;
+                box-shadow: 0px 0px 6px 4px;
+                border: 2px solid black;" class="">
+                    <h3 style="text-align:center; width: 100%; margin:auto; margin-top: 5px">Kết quả</h3>
+                    <hr style="width:100%;height:1px;border:none;color:#333;background-color:white;">
+                    <div style="display: flex; width : 100% ; height: 15vh;">
+                      <div class="img-bien" style="width: 50%;">
+                          <img src="1.jpg" id="image-show-plate" width="" height="" class="" alt="Images" style="display: block; margin-top : 35px;margin-left : 50%; transform: translateX(-50%);">
+                          <p style="text-align : center; margin-top : 15px">Ảnh biển số</p>
+                          
+                      </div>
+                      <div class="img-detect" style="width: 50%;">
+                          <input type="text" name="" id="label-license" value="{{result}}" disabled style="width: 200px; height: 35px; text-align: center; font-size: 20px; margin-top:35px; margin-left : 50%; transform: translateX(-50%);  background: white; border:none; border-radius: 15px" >
+                          <p style=" text-align : center; margin-top : 10px; ">Nhận diện</p>
+                      </div>
+                    </div>
+                    <div style="display: flex; width : 100% ; height: 2vh; margin-top: 70px;">
+                        
+                    </div>
+                    <div class="kitu" style="width : 97%; height: auto; border: 2px solid black; margin-left: 1% ; margin-top: 30px;">
+                        <div class="row1" style="display: flex; justify-content: space-evenly;">
+                            <img src={{or1}} id="image-kt" class="" style="display: block; width: 40px; height: 40px; margin-top : 10px">
+                            <img src={{or2}} id="image-kt" class="" style="display: block; width: 40px; height: 40px; margin-top : 10px">
+                            <img src={{or3}} id="image-kt" class="" style="display: block; width: 40px; height: 40px; margin-top : 10px">
+                            <img src={{or4}} id="image-kt" class="" style="display: block; width: 40px; height: 40px; margin-top : 10px">
+                            <img src={{or5}} id="image-kt" class="" style="display: block; width: 40px; height: 40px; margin-top : 10px">
+                            <img src={{or6}} id="image-kt" class="" style="display: block; width: 40px; height: 40px; margin-top : 10px">
+                            <img src={{or7}} id="image-kt" class="" style="display: block; width: 40px; height: 40px; margin-top : 10px">
+                            <img src={{or8}} id="image-kt" class="" style="display: block; width: 40px; height: 40px; margin-top : 10px">
+                            <img src={{or9}} id="image-kt" class="" style="display: block; width: 40px; height: 40px; margin-top : 10px">
+                            <img src={{or10}} id="image-kt" class="" style="display: block; width: 40px; height: 40px; margin-top : 10px">
+                        </div>
+                        <i style="margin-left: 50%; transform: translateX(-50%); margin-top: 10px" class="fa fa-arrow-down"></i>
+                        
+                        <div class="row2" style="display: flex; justify-content: space-evenly; margin-bottom: 5px">
+                            <img src="{{cl1}}" id="image-kt" class="" style="display: block; width: 40px; height: 40px; margin-top : 10px">
+                            <img src="{{cl2}}" id="image-kt" class="" style="display: block; width: 40px; height: 40px; margin-top : 10px">
+                            <img src="{{cl3}}" id="image-kt" class="" style="display: block; width: 40px; height: 40px; margin-top : 10px">
+                            <img src="{{cl4}}" id="image-kt" class="" style="display: block; width: 40px; height: 40px; margin-top : 10px">
+                            <img src="{{cl5}}" id="image-kt" class="" style="display: block; width: 40px; height: 40px; margin-top : 10px">
+                            <img src="{{cl6}}" id="image-kt" class="" style="display: block; width: 40px; height: 40px; margin-top : 10px">
+                            <img src="{{cl7}}" id="image-kt" class="" style="display: block; width: 40px; height: 40px; margin-top : 10px">
+                            <img src="{{cl8}}" id="image-kt" class="" style="display: block; width: 40px; height: 40px; margin-top : 10px">
+                            <img src="{{cl9}}" id="image-kt" class="" style="display: block; width: 40px; height: 40px; margin-top : 10px">
+                            <img src="{{cl10}}" id="image-kt" class="" style="display: block; width: 40px; height: 40px; margin-top : 10px">
+                        </div>
+                    </div>
+                    <i style="margin-left: 50%; transform: translateX(-50%); margin-top: 10px" class="fa fa-arrow-down"></i>
+                    <div class="img-detect2" style="width: 100%;">
+                      <input type="text" name="" id="label-license2" disabled style="width: 200px; height: 35px; text-align: center; font-size: 20px; margin-top:3px; margin-left : 50%; transform: translateX(-50%); background: white; border:none; border-radius:15px" value="Kết quả">
+                  </div>
+              </div>
+            </div>
+            
+        </div>
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalLabel" style="color: black;">Crop the image</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="img-container">
+                    <img style="max-width: 100%;" id="image" src="https://avatars0.githubusercontent.com/u/3456749">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-primary" id="crop">Crop</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    </form>
+    <div class="footer-copyright" style="overflow: hidden;
+    height: 53px;
+    line-height: 50px;
+    color: rgba(255,255,255,.6);
+    background-color: black;
+    /* text-align: center; */
+    box-shadow: 0px 5px 5px 5px chartreuse;
+    font-size: .9rem;">
+      <div class="container-fluid">
+          © 2020 Copyright: Team HTH_BK </a>
+
+      </div>
+  </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <!-- <script src="plugins/jquery/jquery.min.js"></script> -->
+    <script src="{{ url_for('static',filename='js/1.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/2.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/3.js') }}"></script>
+    <script>
+      
+    </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+import os
+import glob
+d=0
+for x in glob.glob("*"):
+    os.rename(x,str(d)+".jpg")
+    d+=1

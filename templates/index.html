@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">-->
+    <link rel="stylesheet" href="{{ url_for('static',filename='plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/2.css') }}">
+    <title>WEB DEMO</title>
+</head>
+<body style=" background-image: url(../static/bg.jpg);
+background-size: cover;
+background-repeat: none;
+color: white;" >
+<form action="" method="post" enctype="multipart/form-data">
+<div id="cancel_crop_image" style="display: none;">
+    <input name="image" style="display: none;" type="text" value="" id="src_base64">
+</div>
+    <div style="margin-left : 5%; width : 90%; height : 90vh; margin-top: 3vh;" class="">
+        <h3 style="text-align: center;
+        font-family: arial;
+        font-size: 40px;
+        font-weight: bold;
+        font-weight: 15px;">WEB API </h3>
+        <hr style="height:2px;border-width:0;color:black;background-color:white">
+        <div class="" style="display: flex; margin-top : 4vh">
+            <div class="" style="width: 40%; height: 80%; margin-left : 2%">
+                <div class=""><h3></h3></div>
+                <div style="width: 100%;
+                height: 70vh;
+                border-radius: 20px;
+                background: #1f2c3a;
+                box-shadow: 0px 0px 6px 4px;
+                border: 2px solid black;" class="">
+                    <h3 style="margin-top : 5px;text-align:center; width: 100%;">Chọn ảnh</h3>
+                    <hr style="width:100%;height:1px;border:none;color:#333;background-color:white;">
+                    <div id="image-edit-profile" style="display: block; margin:auto; margin-top: 30px">
+                        <canvas width="350" height="250" style="border: 2px solid white; margin-left: 50%;transform: translateX(-50%); display: none"></canvas>
+                        <img src="{{orimg}}" id="image-show avatar" class="" alt="Images" style="display: block; width: 250px; height: 300px; border:2px solid white; margin-left:50%; transform: translateX(-50%)">  
+                </div>
+                
+                <div class="sliders" style="width: 60%; height: auto; margin-left: 50%; transform: translateX(-50%);">
+                  
+                </div>
+                <label class="label" data-toggle="tooltip" title="Change your avatar" style="margin-left: 50%; transform: translateX(-50%); margin-top: 20px; ">
+      
+                    <!-- <input type="file" class="sr-only" id="input" name="image" accept="image/*"> --> 
+                    <input style="font-size: 15px" type="file" id="input">
+                </label>
+                <img id="avatar" src="" alt="" style="display: none;">
+                <!-- <input  id= "up-image" type="file"> -->
+            </div>
+            </div>
+            <div style="width : 10%; height: 80%; margin-left: 5%; margin-top: 15%" class="result">
+                <button id="send-image-plate" type="submit" style="display:block; background-color: #269fc6;border-radius: 15px; width: 100px; height: 40px; border: none; cursor: pointer;" value="">  Send <i style="font: 15px;" class="fa fa-angle-double-right"></i></button>
+          
+            </div>
+            <div class="" style="width: 39%; height: 80%; margin-left : 2%">
+                <div class=""><h3></h3></div>
+                <div style="width: 100%;
+                height: 70vh;
+                border-radius: 20px;
+                background: #1f2c3a;
+                box-shadow: 0px 0px 6px 4px;
+                border: 2px solid black;" class="">
+                    <h3 style="text-align:center; width: 100%; margin:auto; margin-top: 5px">Kết quả</h3>
+                    <div id="image-edit-profile" style="display: block; margin:auto; margin-top: 30px">
+                      <img src="{{resimg}}" id="image-show avatar" class="" alt="Images" style="display: block; max-width: 350px; max-height : 50vh; margin:auto; padding : 2px; border : 1px solid white">  
+                  </div>
+                  <i style="margin-left: 50%; transform: translateX(-50%); margin-top: 10px" class="fa fa-arrow-down"></i>
+                    <div class="img-detect2" style="width: 100%;">
+                      Result : <input type="text" name="" id="label-license2" disabled style="width: 500px; height: 35px; text-align: center; font-size: 20px; margin-top:3px; margin-left : 38%; transform: translateX(-50%); background: white; border:none; border-radius:15px" value="{{result}}">
+               
+                     <br> <p>ID : {{id}} </p> 
+		      <p>Tên : {{name}} </p> 
+  		     <p>Ngày sinh : {{date}} </p> 
+  		     <p>Nguyên quán : {{ad1}} </p> 
+ 		     <p>Đăng kí thường trú : {{ad2}} </p> <br>
+
+                    </div>
+                    </div>
+                    
+              </div>
+            </div>
+            
+        </div>
+    </div>
+</form>
+    <div class="footer-copyright" style="overflow: hidden;
+    height: 53px;
+    line-height: 50px;
+    color: rgba(255,255,255,.6);
+    background-color: black;
+    /* text-align: center; */
+    box-shadow: 0px 5px 5px 5px chartreuse;
+    font-size: .9rem;">
+      <div class="container-fluid">
+          © 2020 Copyright: PITECT </a>
+
+      </div>
+  </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <!-- <script src="plugins/jquery/jquery.min.js"></script> -->
+    <script src="{{ url_for('static',filename='js/2.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/1.js') }}"></script>
+</body>
+</html>
